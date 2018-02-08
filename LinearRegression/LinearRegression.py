@@ -26,8 +26,7 @@ class LinearRegression:
         if (x != None) and (y != None):
             self.param[0] = x
             self.param[1] = y
-        cost = np.sum((self.modelFunction(self.tdata[:, 0]) - self.tdata[:, 1])
-                      **2)
+        cost = np.sum((self.modelFunction(self.tdata[:, 0]) - self.tdata[:, 1])**2)
         return (cost / (2 * self.N))
 
     def gradientDescent(self):
