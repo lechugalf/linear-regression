@@ -1,0 +1,35 @@
+Reference:
+#
+#    R J Freund and P D Minton,
+#    Regression Methods,
+#    Dekker, 1979, page 111.
+#
+#    Helmut Spaeth,
+#    Mathematical Algorithms for Linear Regression,
+#    Academic Press, 1991, page 305,
+#    ISBN 0-12-656460-4.
+#
+#  Discussion:
+#
+#    The length of a species of fish is to be represented as a function
+#    of the age and water temperature.  The fish are kept in tanks
+#    at 25, 27, 29 and 31 degrees Celsius.  After birth, a test specimen
+#    is chosen at random every 14 days and its length measured.
+#
+#    There are 44 rows of data.  The data include:
+#
+#      I,  the index;
+#      A1, the age of the fish;
+#      A2, the water temperature in degrees Celsius;
+#      B,  the length of the fish.
+#
+#    We seek a model of the form:
+#
+#      B = A1 * X1 + A2 * X2
+#
+4 columns
+44 rows
+Index
+Age of fish (days)
+Temperature of water (degrees Celsius)
+Length of fish

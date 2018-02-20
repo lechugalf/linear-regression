@@ -11,7 +11,7 @@ def main():
 
     #create model
     linreg = LinearRegression(data, 'test')
-    linreg.param = [1.0, 1.0]
+    linreg.param = [1.0, 1.0]z
     linreg.describeModel()
 
     #training model

@@ -1,5 +1,5 @@
-# simple-linear-regression
-Linear regression algorithm that converges using gradient descent built-in Python with Numpy module. <br>The LinearRegression module allows you to create a linear regression model with just one feature. 
+# linear-regression
+Linear regression algorithm that converges using gradient descent built-in Python with Numpy module. <br>The LinearRegression module allows you to create a linear regression model with just or multiple features. 
 
 ## Getting Started
 demo.py gives you an insight to use the module LinearRegression, you can use it to make and fit your models
@@ -26,7 +26,7 @@ If you are not familiar with Git and GitHub, you can simply download the zip fil
 Then, move to the directory created by the clone/zip file:
 
 ```bash
-cd simple-linear-regression
+cd linear-regression
 ```
 #### Run demo.py
 ```
