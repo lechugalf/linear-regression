@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib as plt
 
 class LinearRegression:
     """Linear Regression by gradient descent"""
@@ -51,3 +52,15 @@ class LinearRegression:
             if (step % (times / 4) == 0):
                 print self.costFunction()
         print 'training done...'
+
+    def scatterPlot(self):
+        axis = [min(self.tdata[:,0])-1, 
+                max(self.tdata[:,0])+1, 
+                min(self.tdata[:,1])-1, 
+                max(self.tdata[:,1])+1]
+
+        setx = np.linspace(axis[0], axis[1])
+        plt.scatter(self.tdata[:,0], self.tdata[:,1])
+        plt.plot(setx, self.modelFunction(setx))
+        plt.axis(axis)
+        plt.show()

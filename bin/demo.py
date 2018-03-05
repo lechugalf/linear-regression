@@ -3,7 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from LinearRegression import *
+from SimpleLinearRegression import *
 
 def main():
     #load dataset
@@ -11,7 +11,7 @@ def main():
 
     #create model
     linreg = LinearRegression(data, 'test')
-    linreg.param = [1.0, 1.0]z
+    linreg.param = [1.0, 1.0]
     linreg.describeModel()
 
     #training model
