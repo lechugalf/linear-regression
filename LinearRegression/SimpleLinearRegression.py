@@ -34,8 +34,7 @@ class LinearRegression:
         t1, t2 = 0, 0
         t1 = np.sum(self.modelFunction(self.tdata[:, 0]) - self.tdata[:, 1])
         t1 = self.lrate * (t1 / self.N)
-        t2 = np.sum((self.modelFunction(self.tdata[:, 0]) - self.tdata[:, 1]) *
-                    self.tdata[:, 0])
+        t2 = np.sum((self.modelFunction(self.tdata[:, 0]) - self.tdata[:, 1]) * self.tdata[:, 0])
         t2 = self.lrate * (t2 / self.N)
         self.param[0] -= t1
         self.param[1] -= t2

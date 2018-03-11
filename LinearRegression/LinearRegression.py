@@ -10,37 +10,41 @@ class LinearRegression:
 
         #formating data
         x0 = np.ones((self.N, 1)) 
-        self.X = np.concatenate((x0, tdata[:,:-1]), axis=1)
-        self.y = tdata[:,-1]
-        self.param = np.array([0.0] * self.nvar)
+        self.X = np.asmatrix(np.concatenate((x0, tdata[:,:-1]), axis=1))
+        self.y = np.asmatrix(tdata[:,-1]).transpose()
+        self.param = np.matrix([1.0] * self.nvar)
         self.lrate = 0.001
 
     def describeModel(self):
         print "Model '{}'".format(self.name)
-        for x in range(0, self.nvar):
-            print 'label x' + x + ':' + ', '.join(map(str, self.X[:, x]))
-
+        #missing print x elements
         print 'label y: ' + ', '.join(map(str, self.y))
-        print 'Parameters: ' + self.param
+        print 'Parameters: ' + str(self.param)
         print 'Cost: {}'.format(self.costFunction())
         print 'Learning Rate: {}'.format(self.lrate)
 
     def modelFunction(self, xval):
-        return self.param.transpose() * self.X
+        return np.multiply(self.param, self.X)
+        #return self.param.transpose() * self.X
 
     def costFunction(self):
-        self.param = np.linalg.inv(self.X.transpose() * self.X) * self.X.transpose() * self.y
+        cf = np.sum(np.square(np.subtract(self.modelFunction(self.X), self.y)))
+        #cf = np.sum(((self.modelFunction(self.X) - self.y))**2)
+        return (cf / (2*self.N))
+
+        #cost function for normal equation
+        #self.param = np.linalg.inv(self.X.transpose() * self.X) * self.X.transpose() * self.y
 
     def gradientDescent(self):
-        #multiple variable
+
+
         t = [0] * self.nvar
-        for v in range(self.nvar):
-            t[v] = np.sum((self.modelFunction(self.X) - self.y) * self.X[:, v])
-            t[v] = self.lrate * (t[v] / self.N)
-        self.param = t
+        for p in range(self.nvar):
+            t[p] = np.sum(np.multiply((np.subtract(self.modelFunction(self.X), self.y)), self.X[:, p]))
+            t[p] = self.lrate * (t[p] / self.N)
+        self.param -= t
 
     def training(self, times, lrate=None):
-
         if (lrate != None):
             self.lrate = lrate
 
@@ -53,7 +57,6 @@ class LinearRegression:
         print 'training done...'
 
     def graphResults():
-
         axis = [min(X), max(X), min(y), max(y)]
         setx = np.linspace(axis[0], axis[1])
 
