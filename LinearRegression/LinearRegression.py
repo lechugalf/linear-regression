@@ -12,7 +12,7 @@ class LinearRegression:
         x0 = np.ones((self.N, 1)) 
         self.X = np.asmatrix(np.concatenate((x0, tdata[:,:-1]), axis=1))
         self.y = np.asmatrix(tdata[:,-1]).transpose()
-        self.param = np.matrix([1.0] * self.nvar)
+        self.param = np.matrix([5.0] * self.nvar).T
         self.lrate = 0.001
 
     def describeModel(self):
@@ -24,7 +24,7 @@ class LinearRegression:
         print 'Learning Rate: {}'.format(self.lrate)
 
     def modelFunction(self, xval):
-        return np.multiply(self.param, self.X)
+        return np.multiply(self.param.T, xval)
         #return self.param.transpose() * self.X
 
     def costFunction(self):
@@ -36,13 +36,12 @@ class LinearRegression:
         #self.param = np.linalg.inv(self.X.transpose() * self.X) * self.X.transpose() * self.y
 
     def gradientDescent(self):
-
-
-        t = [0] * self.nvar
+        t = np.matrix([1.0] * self.nvar).T
         for p in range(self.nvar):
             t[p] = np.sum(np.multiply((np.subtract(self.modelFunction(self.X), self.y)), self.X[:, p]))
             t[p] = self.lrate * (t[p] / self.N)
         self.param -= t
+        #self.param = np.subtract(self.param, t)
 
     def training(self, times, lrate=None):
         if (lrate != None):
@@ -52,6 +51,7 @@ class LinearRegression:
             #descent step
             self.gradientDescent()
             if (step % (times / 4) == 0):
+                print 'Parameters: ' + str(self.param)
                 print self.costFunction()
 
         print 'training done...'
